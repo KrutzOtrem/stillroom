@@ -1,0 +1,10 @@
+Then you can keep your original line unchanged. This costs one line and avoids confusion later when you inevitably tweak margins again.
+
+Between the two, I recommend the second approach if you are already touching UI code today. It makes intent obvious and avoids this exact error resurfacing in another overlay.
+
+Why this slipped in
+When I added the Booklets overlay, I followed the visual spacing pattern you’ve been using conceptually rather than mechanically. Your codebase talks about bottom margins implicitly but never named them. The compiler reminded us of that philosophical inconsistency.
+
+Once you apply either fix, this error will disappear and nothing else should break. No cascade, no hidden landmines.
+
+After this compiles, the next thing worth checking is scroll bounds in the booklet overlay. Long text files can currently scroll past the last line by a few pixels. It’s harmless, but if you want the polish knife out, that’s the next cut.
